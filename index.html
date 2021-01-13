@@ -4,8 +4,10 @@
     <title>Chat and Talk</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
       rel="stylesheet"
     />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
       form {
@@ -23,7 +25,7 @@
         font-size: 20px;
       }
       .time {
-        color: blue;
+        color: red;
         font-family: "Ubuntu";
         text-align: right;
         font-size: 20px;
@@ -63,7 +65,7 @@
         position: relative;
         left: 50%;
         width: 50%;
-        background-color: green;
+        background-color: red;
         word-wrap: break-word;
         border-radius: 10px;
         border-width: 10px;
@@ -71,6 +73,10 @@
         border-style: solid;
       }
     </style>
+    <script>
+      $("#mydiv").setAttribute("class","col-md-5");
+      $("#yourdiv").setAttribute("class","col-md-5");
+    </script>
   </head>
 
 
@@ -80,6 +86,7 @@
       <input type="text" id="msg" />
       <input type="submit" id="submitButton" value="Send" />
     </form>
+
     <ul id="messages"></ul>
     <br><br>
   </body>
@@ -149,7 +156,7 @@
       const div = document.createElement("div");
       const li = document.createElement("li");
       const p = document.createElement("p");
-      div.className = divClass;
+      div.className = divClass + " col-md-5";
       p.className = "time";
       p.innerText = moment().format("hh:mm");
       div.innerHTML =
