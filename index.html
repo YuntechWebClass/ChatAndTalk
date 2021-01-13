@@ -86,9 +86,10 @@
       <input type="text" id="msg" />
       <input type="submit" id="submitButton" value="Send" />
     </form>
-
-    <ul id="messages"></ul>
-    <br><br>
+    <div class="container-fluid">
+      <ul id="messages"></ul>
+      <br><br>
+    </div>
   </body>
 
 
@@ -156,7 +157,7 @@
       const div = document.createElement("div");
       const li = document.createElement("li");
       const p = document.createElement("p");
-      div.className = divClass + " col-md-5";
+      div.className = divClass + " col-3";
       p.className = "time";
       p.innerText = moment().format("hh:mm");
       div.innerHTML =
