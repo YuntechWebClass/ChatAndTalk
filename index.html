@@ -77,9 +77,14 @@
       <input type="text" id="msg" />
       <input type="submit" id="submitButton" value="Send" />
     </form>
-    <div class="container-fluid" id = "messages">
-      <ul class="col-3" id = "divide"></ul>
-      <br><br>
+    <div class="container-fluid">
+      <div class="col-md-10">
+        <ul id="messages"></ul>
+        <br><br>
+      </div>
+      <div class="col-md-2">
+        <p>123</p>;
+      </div>
     </div>
   </body>
 
@@ -157,7 +162,6 @@
       div.appendChild(li);
       li.appendChild(p);
       document.getElementById("messages").appendChild(div);
-      $("#"+divClass).appendChild(ul);
       document.getElementById("messages").appendChild(document.createElement("br"));
 
       //scroll to the bottom
