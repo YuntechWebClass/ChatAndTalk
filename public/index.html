@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat and Talk</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
+    />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+      form {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      form input {
+        height: 30;
+        width: 90%;
+        font-size: 20px;
+      }
+      #submitButton {
+        width: 9%;
+        font-size: 20px;
+      }
+      .time {
+        color: red;
+        font-family: "Ubuntu";
+        text-align: right;
+        font-size: 20px;
+      }
+      .message {
+        display: inline;
+        font-size: 20px;
+      }
+      #messages {
+        list-style-type: none;
+        font-size: 20px;
+      }
+      .me {
+        font-family: sans-serif, "Courier New", Courier, monospace;
+        text-align: right;
+        font-size: 20px;
+      }
+      .you {
+        font-family: sans-serif, "Courier New", Courier, monospace;
+        text-align: left;
+        font-size: 20px;
+       
+      }
+      .yourDiv {
+        position: relative;
+        background-color: blue;
+        color: white;
+        word-wrap: break-word;
+        border-radius: 10px;
+        border-width: 10px;
+        border-color: blue;
+        border-style: solid;
+      }
+      .myDiv {
+        position: relative;
+        background-color: green;
+        word-wrap: break-word;
+        border-radius: 10px;
+        border-width: 10px;
+        border-color: gray;
+        border-style: solid;
+      }
+    </style>
+  </head>
+
+
+
+  <body>
+    <form>
+      <input type="text" id="msg" />
+      <input type="submit" id="submitButton" value="Send" />
+    </form>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-10">
+          <ul id="messages"></ul> 
+          <br><br>
+        </div>
+      </div>
+    </div>
+  </body>
+
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"
+  ></script>
+
+
+
+  <script>
+    let userName = prompt("Username");
+    let roomName = prompt("Room name");
+    let socket = io();
+
+    // focus on text box
+    document.getElementById("msg").focus();
+
+    // submit
+    document
+      .getElementsByTagName("form")[0]
+      .addEventListener("submit", function (event) {
+        event.preventDefault();
+        socket.emit("send message", {
+          author: userName,
+          room: roomName,
+          message: document.getElementById("msg").value,
+          image: ""
+        });
+
+        document.getElementById("msg").value = "";
+        document.getElementById("msg").focus();
+      });
+
+    // send event that user has joined room
+    socket.emit("join", {userName: userName, roomName: roomName});
+
+    // show get new message
+    socket.on("show message", (data)=>{
+      const div = document.createElement("div");
+      const li = document.createElement("li");
+      const p = document.createElement("p");
+      let authorClass = "";
+      let divClass = ""
+
+      // verify that who send the message
+      if (data.author === userName) {
+        authorClass = "me";
+        divClass = "myDiv";
+      } else {
+        authorClass = "you";
+        divClass = "yourDiv";
+      }
+
+      div.className = divClass;
+      p.className = "time";
+
+      p.innerText = data.time;
+      div.innerHTML =
+        `<p class="${authorClass}">${data.author}</p>` +
+        `<p class="message">${data.message}</p>`;
+      
+      div.id = data.id;
+      
+      div.appendChild(li);
+      li.appendChild(p);
+
+      document.getElementById("messages").appendChild(div);
+      document.getElementById("messages").appendChild(document.createElement("br"));
+
+      //scroll to the bottom
+      window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    // remove message
+    socket.on("hide message", (data)=>{
+      document.getElementById(data.id).remove();
+    });
+  </script>
+</html>
