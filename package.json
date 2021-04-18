@@ -1,21 +1,22 @@
 {
-  "name": "socket-app",
-  "version": "1.0.0",
+  "name": "chatandtalk",
+  "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node public/main",
-    "dev" : "nodemon public/main"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YuntechWebClass/ChatAndTalk.git"
+  },
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YuntechWebClass/ChatAndTalk/issues"
+  },
+  "homepage": "https://github.com/YuntechWebClass/ChatAndTalk#readme",
   "dependencies": {
-    "ejs": "^3.1.6",
-    "ejs-locals": "^1.0.2",
-    "express": "^4.17.1",
-    "moment": "^2.26.0",
-    "socket.io": "^2.3.0"
+    "ejs": "^3.1.6"
   }
 }
