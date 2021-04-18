@@ -14,6 +14,9 @@ app.set('view engine', 'ejs');
 
 app.get('/', function (req, res) {
   res.render('index')
+  setTimeout(function() {
+      res.render('index', {'title': 'test'})
+  }, 1000);
 })
 // app.get("/", function (req, res) {
 //   res.sendFile(__dirname + "/index.html");
