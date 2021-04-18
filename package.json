@@ -18,6 +18,7 @@
   "homepage": "https://github.com/YuntechWebClass/ChatAndTalk#readme",
   "dependencies": {
     "ejs": "^3.1.6",
+    "ejs-locals": "^1.0.2",
     "express": "^4.17.1",
     "http": "0.0.1-security",
     "socket.io": "^4.0.1"
