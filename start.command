@@ -1,2 +1,2 @@
-cd /Users/KNY/Files/JavaScript/Chat-App-master
+cd /Users/KNY/Files/Projects/ChatAndTalk/
 node main.js
