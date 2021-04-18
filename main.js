@@ -1,15 +1,23 @@
 var app = require("express")();
 var http = require("http").createServer(app);
 var io = require("socket.io")(http);
+let engine = require('ejs-locals');
 const {joinUser, removeUser, findUser} = require('./users');
 
 
 
+app.engine('ejs', engine);
+app.set('views', './views');
+app.set('view engine', 'ejs');
 
 
-app.get("/", function (req, res) {
-  res.sendFile(__dirname + "/index.html");
-});
+
+app.get('/', function (req, res) {
+  res.render('index')
+})
+// app.get("/", function (req, res) {
+//   res.sendFile(__dirname + "/index.html");
+// });
 
 
 
