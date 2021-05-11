@@ -55,19 +55,11 @@
         background-color: blue;
         color: white;
         word-wrap: break-word;
-        border-radius: 10px;
-        border-width: 10px;
-        border-color: blue;
-        border-style: solid;
       }
       .myDiv {
         position: relative;
-        background-color: green;
+        background-color:darkorange;
         word-wrap: break-word;
-        border-radius: 10px;
-        border-width: 10px;
-        border-color: gray;
-        border-style: solid;
       }
     </style>
   </head>
@@ -75,13 +67,14 @@
 
 
   <body>
+    <h1 id="RN">聊天室</h1>
     <form>
       <input type="text" id="msg" />
       <input type="submit" id="submitButton" value="Send" />
     </form>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-10">
+        <div class="col-5">
           <ul id="messages"></ul> 
           <br><br>
         </div>
@@ -103,6 +96,8 @@
     let userName = prompt("Username");
     let roomName = prompt("Room name");
     let socket = io();
+    // roomname
+    document.getElementById("RN").innerHTML(roomName);
 
     // focus on text box
     document.getElementById("msg").focus();
@@ -168,5 +163,4 @@
       document.getElementById(data.id).remove();
     });
   </script>
-  <h1>聊天室</h1>
 </html>
