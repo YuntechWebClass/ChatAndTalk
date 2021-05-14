@@ -8,78 +8,21 @@
       href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
     />
+    <link
+      rel="stylesheet" type="text/css" href="layout.css"
+    />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <style>
-      form {
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-      }
-      form input {
-        height: 30;
-        width: 90%;
-        font-size: 20px;
-      }
-      #submitButton {
-        width: 9%;
-        font-size: 20px;
-      }
-      .time {
-        color: red;
-        font-family: "Ubuntu";
-        text-align: right;
-        font-size: 20px;
-      }
-      .message {
-        display: inline;
-        font-size: 20px;
-      }
-      #messages {
-        list-style-type: none;
-        font-size: 20px;
-      }
-      .me {
-        font-family: sans-serif, "Courier New", Courier, monospace;
-        text-align: right;
-        font-size: 20px;
-      }
-      .you {
-        font-family: sans-serif, "Courier New", Courier, monospace;
-        text-align: left;
-        font-size: 20px;
-       
-      }
-      .yourDiv {
-        position: relative;
-        background-color: blue;
-        color: white;
-        word-wrap: break-word;
-        border-radius: 10px;
-        border-width: 10px;
-        border-color: blue;
-        border-style: solid;
-      }
-      .myDiv {
-        position: relative;
-        background-color: green;
-        word-wrap: break-word;
-        border-radius: 10px;
-        border-width: 10px;
-        border-color: gray;
-        border-style: solid;
-      }
-    </style>
   </head>
 
 
 
   <body>
+    <h1 id="roomName">聊天室</h1>
     <form>
       <input type="text" id="msg" />
       <input type="submit" id="submitButton" value="Send" />
     </form>
-    <div class="container-fluid">
+    <div class="container">
       <div class="row">
         <div class="col-10">
           <ul id="messages"></ul> 
@@ -103,6 +46,8 @@
     let userName = prompt("Username");
     let roomName = prompt("Room name");
     let socket = io();
+
+    document.getElementById("roomName").innerText = roomName
 
     // focus on text box
     document.getElementById("msg").focus();
