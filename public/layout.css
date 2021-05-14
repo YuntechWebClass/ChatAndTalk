@@ -1,5 +1,4 @@
 form {
-<<<<<<< HEAD
     position: fixed;
     bottom: 0;
     width: 80%;
@@ -48,53 +47,3 @@ form {
     background-color:darkorange;
     word-wrap: break-word;
     }
-=======
-position: fixed;
-bottom: 0;
-width: 80%;
-}
-form input {
-height: 30;
-width: 90%;
-font-size: 20px;
-}
-#submitButton {
-width: 9%;
-font-size: 20px;
-}
-.time {
-color: red;
-font-family: "Ubuntu";
-text-align: right;
-font-size: 20px;
-}
-.message {
-font-size: 20px;
-}
-#messages {
-list-style-type: none;
-font-size: 20px;
-}
-.me {
-font-family: sans-serif, "Courier New", Courier, monospace;
-text-align: right;
-font-size: 20px;
-}
-.you {
-font-family: sans-serif, "Courier New", Courier, monospace;
-text-align: left;
-font-size: 20px;
-
-}
-.yourDiv {
-position: relative;
-background-color: blue;
-color: white;
-word-wrap: break-word;
-}
-.myDiv {
-position: relative;
-background-color:darkorange;
-word-wrap: break-word;
-}
->>>>>>> ea84874e4b03d2ebeafee61032af7ae4061861fe
