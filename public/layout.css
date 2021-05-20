@@ -25,6 +25,7 @@ form input {
     list-style-type: none;
     font-size: 20px;
     margin:0px;
+    padding:0px
 }
 .me {
     font-family: sans-serif, "Courier New", Courier, monospace;
