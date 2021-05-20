@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat and Talk</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
     />
     <link
-      rel="stylesheet" type="text/css" href="layout.css"
+      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
+    />
+    <link
+    rel="stylesheet" type="text/css" href="layout.css"
     />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
@@ -22,14 +24,27 @@
       <input type="text" id="msg" />
       <input type="submit" id="submitButton" value="Send" />
     </form>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
-        <ul id="messages"></ul> 
-          <div class="myDiv">
-            <p calss="me">123 &emsp;&emsp;4156</p>
-            <p class="time">08:37:05</p>
-          </div>
-        <br><br>
+        <div class="col-sm-6">
+          <table id="Msg">
+            <tr class="myMsg">
+              <td class="author">author</td>
+              <td class="message">message</td>
+              <td class="time">time</td>
+            </tr>
+            <tr class="otherMsg">
+              <td class="author">author</td>
+              <td class="message">message</td>
+              <td class="time">time</td>
+            </tr>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <h1 style="color:grey">圖片<h1>
+          <img src="https://upload.cc/i1/2019/09/30/L5KTDW.png" class="img-fluid">
+          <p>^參考圖</p>
+        </div>
       </div>
     </div>
   </body>
@@ -75,35 +90,34 @@
 
     // show get new message
     socket.on("show message", (data)=>{
-      const div = document.createElement("div");
-      const li = document.createElement("li");
-      const p = document.createElement("p");
+      const tr = document.createElement("tr");
+      const Atd = document.createElement("td");
+      const Mtd = document.createElement("td");
+      const Ttd = document.createElement("td");
       let authorClass = "";
       let divClass = ""
 
       // verify that who send the message
       if (data.author === userName) {
-        authorClass = "me";
-        divClass = "myDiv";
+        divClass = "myMsg";
       } else {
-        authorClass = "you";
-        divClass = "yourDiv";
+        divClass = "otherMsg";
       }
 
-      div.className = divClass;
-      p.className = "time";
+      tr.className = divClass;
+      Atd.className = "author";
+      Mtd.className = "message";
+      Ttd.className = "time";
 
-      p.innerText = data.time;
-      div.innerHTML =
-        `<p class="${authorClass}">${data.author}&emsp;&emsp;${data.message}</p>`
-
-      div.id = data.id;
+      Atd.innerText = data.author;
+      Mtd.innerText = data.message;
+      Ttd.innerText = data.time;
       
-      div.appendChild(li);
-      li.appendChild(p);
+      tr.appendChild(Atd);
+      tr.appendChild(Mtd);
+      tr.appendChild(Ttd);
 
-      document.getElementById("messages").appendChild(div);
-      document.getElementById("messages").appendChild(document.createElement("br"));
+      document.getElementById("Msg").appendChild(tr);
 
       //scroll to the bottom
       window.scrollTo(0, document.body.scrollHeight);
