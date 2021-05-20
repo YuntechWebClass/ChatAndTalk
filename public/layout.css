@@ -6,7 +6,7 @@ form {
 }
 form input {
     height: 30;
-    width: 78%;
+    width: 89%;
     font-size: 20px;
 }
 #submitButton {
@@ -14,13 +14,14 @@ form input {
     font-size: 20px;
 }
 .time {
-    color: red;
+    color:gray;
     font-family: "Ubuntu";
     text-align: right;
     font-size: 20px;
 }
 .message {
     font-size: 20px;
+    width : 800px
 }
 #messages {
     list-style-type: none;
@@ -38,17 +39,20 @@ form input {
     text-align: left;
     font-size: 20px;    
 }
-.yourDiv {
-    background-color: blue;
-    color: white;
+.otherMsg {
+    background-color: white;
     word-wrap: break-word;
     border-radius: 8px 8px 8px 0;
 }
-.myDiv {
-    background-color:darkorange;
+.myMsg {
+    background-color:greenyellow;
     word-wrap: break-word;
     border-radius: 8px 8px 8px 0;
 }
-.container{
-    width: 45%;
+.author{
+    width: 150px;
+    font-size: 20px;
+}
+div.col-sm-6{
+    padding:0px;
 }
