@@ -1,52 +1,50 @@
 form {
-position: fixed;
-bottom: 0;
-width: 50%;
+    position: fixed;
+    bottom: 0;
+    width: 80%;
 }
 form input {
-height: 30;
-width: 88%;
-font-size: 20px;
+    height: 30;
+    width: 90%;
+    font-size: 20px;
 }
 #submitButton {
-width: 9%;
-font-size: 20px;
+    width: 9%;
+    font-size: 20px;
 }
 .time {
-color: red;
-font-family: "Ubuntu";
-text-align: right;
-font-size: 20px;
+    color: red;
+    font-family: "Ubuntu";
+    text-align: right;
+    font-size: 20px;
 }
 .message {
-font-size: 20px;
+    font-size: 20px;
 }
 #messages {
-list-style-type: none;
-font-size: 20px;
+    list-style-type: none;
+    font-size: 20px;
 }
 .me {
-font-family: sans-serif, "Courier New", Courier, monospace;
-text-align: right;
-font-size: 20px;
+    font-family: sans-serif, "Courier New", Courier, monospace;
+    text-align: right;
+    font-size: 20px;
 }
 .you {
-font-family: sans-serif, "Courier New", Courier, monospace;
-text-align: left;
-font-size: 20px;
-
+    font-family: sans-serif, "Courier New", Courier, monospace;
+    text-align: left;
+    font-size: 20px;    
 }
 .yourDiv {
-position: relative;
-background-color: blue;
-color: white;
-word-wrap: break-word;
+    position: relative;
+    background-color: blue;
+    color: white;
+    word-wrap: break-word;
+    border-radius: 8px 8px 8px 0;
 }
 .myDiv {
-position: relative;
-background-color:darkorange;
-word-wrap: break-word;
-}
-.container{
-    width: 50%;
+    position: relative;
+    background-color:darkorange;
+    word-wrap: break-word;
+    border-radius: 8px 8px 8px 0;
 }

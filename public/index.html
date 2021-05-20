@@ -17,7 +17,7 @@
 
 
   <body>
-    <h1>聊天室</h1>
+    <h1 id="roomName">聊天室</h1>
     <form>
       <input type="text" id="msg" />
       <input type="submit" id="submitButton" value="Send" />
@@ -49,6 +49,8 @@
     let userName = prompt("Username");
     let roomName = prompt("Room name");
     let socket = io();
+
+    document.getElementById("roomName").innerText = roomName
 
     // focus on text box
     document.getElementById("msg").focus();
