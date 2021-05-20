@@ -1,11 +1,11 @@
 form {
 position: fixed;
 bottom: 0;
-width: 80%;
+width: 50%;
 }
 form input {
 height: 30;
-width: 90%;
+width: 88%;
 font-size: 20px;
 }
 #submitButton {
@@ -46,4 +46,7 @@ word-wrap: break-word;
 position: relative;
 background-color:darkorange;
 word-wrap: break-word;
+}
+.container{
+    width: 50%;
 }
