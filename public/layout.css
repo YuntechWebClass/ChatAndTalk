@@ -2,6 +2,7 @@ form {
     position: fixed;
     bottom: 0;
     width: 50%;
+    z-index: 999;
 }
 form input {
     height: 30;
