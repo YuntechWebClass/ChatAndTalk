@@ -35,6 +35,10 @@
               <td class="time">time</td>
             </tr>
           </table>
+          <form>
+            <input type="text" id="msg" />
+            <input type="submit" id="submitButton" value="Send" />
+          </form>
         </div>
         <div class="col-sm-6">
           <h1 style="color:grey">圖片<h1>
@@ -42,10 +46,6 @@
           <p>^參考圖</p>
         </div>
       </div>
-      <form>
-        <input type="text" id="msg" />
-        <input type="submit" id="submitButton" value="Send" />
-      </form>
     </div>
   </body>
 
@@ -117,7 +117,8 @@
       tr.appendChild(Mtd);
       tr.appendChild(Ttd);
 
-      document.getElementById("Msg").appendChild(tr);
+      var first = document.getElementById("Msg").firstChild;
+      document.getElementById("Msg").insertBefore(tr,first);
 
       //scroll to the bottom
       window.scrollTo(0, document.body.scrollHeight);
