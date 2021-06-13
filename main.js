@@ -67,6 +67,7 @@ io.on("connection", function(socket) {
 
 function getTime() {
   let time = new Date();
+  time.setHours(time.getHours());
   let year = time.getFullYear().toString().padStart(4, 0);
   let month = (time.getMonth()+1).toString().padStart(2, 0);
   let date = time.getDate().toString().padStart(2, 0);

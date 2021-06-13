@@ -8,11 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" />
     <link rel="stylesheet" type="text/css" href="layout.css" />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous"
-    ></script>
   </head>
 
 
@@ -23,16 +18,6 @@
       <div class="row">
         <div class="col-sm-6">
           <table id="Msg">
-            <tr class="myMsg">
-              <td class="author">author</td>
-              <td class="message">message</td>
-              <td class="time">time</td>
-            </tr>
-            <tr class="otherMsg">
-              <td class="author">author</td>
-              <td class="message">message</td>
-              <td class="time">time</td>
-            </tr>
           </table>
           <form>
             <input type="text" id="msg" />
@@ -50,6 +35,11 @@
 
 
   <script src="/socket.io/socket.io.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-3.5.1.js"
+    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"
+  ></script>
   <script>
     let userName = prompt("Username");
     let roomName = prompt("Room name");
@@ -86,7 +76,7 @@ console.log("TEST");
       const Mtd = document.createElement("td");
       const Ttd = document.createElement("td");
       let authorClass = "";
-      let divClass = ""
+      let divClass = "";
 
       // verify that who send the message
       if (data.author === userName) {
