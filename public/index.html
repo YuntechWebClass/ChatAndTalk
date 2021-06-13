@@ -4,16 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chat and Talk</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap"
-    />
-    <link
-    rel="stylesheet" type="text/css" href="layout.css"
-    />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" />
+    <link rel="stylesheet" type="text/css" href="layout.css" />
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
   </head>
 
 
@@ -51,20 +50,15 @@
 
 
   <script src="/socket.io/socket.io.js"></script>
-  <script
-    src="https://code.jquery.com/jquery-3.5.1.js"
-    integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"
-  ></script>
-
-
-
   <script>
     let userName = prompt("Username");
     let roomName = prompt("Room name");
     let socket = io();
-
+console.log("TEST");
     document.getElementById("roomName").innerText = roomName
+
+    // send event that user has joined room
+    socket.emit("join", {userName: userName, roomName: roomName});
 
     // focus on text box
     document.getElementById("msg").focus();
@@ -84,9 +78,6 @@
         document.getElementById("msg").value = "";
         document.getElementById("msg").focus();
       });
-
-    // send event that user has joined room
-    socket.emit("join", {userName: userName, roomName: roomName});
 
     // show get new message
     socket.on("show message", (data)=>{
