@@ -54,16 +54,21 @@ io.on("connection", function(socket) {
   // send message
   socket.on("send message", (data) => {
     let time = getTime();
-    database.ref(`room/${data.room}/${time.full}`).set({
-      id: time.full,
-      time: time.short,
-      author: data.author,
-      message: data.message
-    });
     if (isImageUrl(data.message)) {
-      database.ref(`room/${data.room}/${time.full}`).update({
+      database.ref(`room/${data.room}/${time.full}`).set({
+        id: time.full,
+        time: time.short,
+        author: data.author,
+        message: data.message,
         image: data.message
       })
+    } else {
+      database.ref(`room/${data.room}/${time.full}`).set({
+        id: time.full,
+        time: time.short,
+        author: data.author,
+        message: data.message
+      });
     }
   });
 });
