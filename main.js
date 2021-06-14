@@ -80,9 +80,14 @@ io.on("connection", function(socket) {
     //     message: data.message
     //   })
     // );
-    hasImage(data.message).then(resolve => console.log(resolve),
-      error => console.log(error)
-    );
+    // hasImage(data.message).then(resolve => console.log(resolve),
+    //   error => console.log(error)
+    // );
+    var fs = require("fs");
+      // Check if the file exists in the current directory.
+      fs.access(data.message, fs.constants.F_OK, (err) => {
+        console.log(`${data.message} ${err ? 'does not exist' : 'exists'}`);
+    });
   });
 });
 
