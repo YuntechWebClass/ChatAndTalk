@@ -60,7 +60,7 @@ io.on("connection", function(socket) {
       message: data.message
     });
     hasImage(data.message).then(
-      database.ref(`room/${data.room}/${time.full}`).set({
+      database.ref(`room/${data.room}/${time.full}`).update({
         image: data.message
       })
     );
