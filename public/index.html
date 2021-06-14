@@ -26,8 +26,7 @@
         </div>
         <div class="col-sm-6">
           <h1 style="color:grey">圖片<h1>
-          <img src="https://upload.cc/i1/2019/09/30/L5KTDW.png" class="img-fluid">
-          <p>^參考圖</p>
+          <img id="image" src="https://upload.cc/i1/2019/09/30/L5KTDW.png" class="img-fluid">
         </div>
       </div>
     </div>
@@ -44,7 +43,7 @@
     let userName = prompt("Username");
     let roomName = prompt("Room name");
     let socket = io();
-console.log("TEST");
+    
     document.getElementById("roomName").innerText = roomName
 
     // send event that user has joined room
@@ -61,8 +60,7 @@ console.log("TEST");
         socket.emit("send message", {
           author: userName,
           room: roomName,
-          message: document.getElementById("msg").value,
-          image: ""
+          message: document.getElementById("msg").value
         });
 
         document.getElementById("msg").value = "";
@@ -100,11 +98,21 @@ console.log("TEST");
 
       var first = document.getElementById("Msg").firstChild;
       document.getElementById("Msg").insertBefore(tr,first);
+      
+      // Show image
+      image = document.getElementById("image");
+      if (data.image != null) {
+        image.src = data.image;
+      }
     });
 
     // remove message
     socket.on("hide message", (data)=>{
       document.getElementById(data.id).remove();
     });
+
+    function checkURL(url) {
+      return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+    }
   </script>
 </html>
