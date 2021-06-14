@@ -80,6 +80,9 @@ io.on("connection", function(socket) {
         message: data.message
       })
     );
+    hasImage(data.message).then(resolve => console.log(resolve),
+      error => console.log(error)
+    );
   });
 });
 
