@@ -64,22 +64,22 @@ io.on("connection", function(socket) {
     //     image: data.message
     //   })
     // );
-    hasImage(data.message).then(resolve =>
-      database.ref(`room/${data.room}/${time.full}`).set({
-        id: time.full,
-        time: time.short,
-        author: data.author,
-        message: data.message,
-        image: data.message
-      }),
-      error =>
-      database.ref(`room/${data.room}/${time.full}`).set({
-        id: time.full,
-        time: time.short,
-        author: data.author,
-        message: data.message
-      })
-    );
+    // hasImage(data.message).then(resolve =>
+    //   database.ref(`room/${data.room}/${time.full}`).set({
+    //     id: time.full,
+    //     time: time.short,
+    //     author: data.author,
+    //     message: data.message,
+    //     image: data.message
+    //   }),
+    //   error =>
+    //   database.ref(`room/${data.room}/${time.full}`).set({
+    //     id: time.full,
+    //     time: time.short,
+    //     author: data.author,
+    //     message: data.message
+    //   })
+    // );
     hasImage(data.message).then(resolve => console.log(resolve),
       error => console.log(error)
     );
