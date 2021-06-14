@@ -4,6 +4,7 @@ let express = require("express");
 let app = express();
 let server = require("http").createServer(app);
 let io = require("socket.io")(server);
+const isImageUrl = require('is-image-url');
 const firebaseConfig = require("./FirebaseConfig.json");
 const { time } = require("console");
 const pathName = firebaseConfig.pathName
@@ -53,41 +54,17 @@ io.on("connection", function(socket) {
   // send message
   socket.on("send message", (data) => {
     let time = getTime();
-    // database.ref(`room/${data.room}/${time.full}`).set({
-    //   id: time.full,
-    //   time: time.short,
-    //   author: data.author,
-    //   message: data.message
-    // });
-    // hasImage(data.message).then(resolve =>
-    //   database.ref(`room/${data.room}/${time.full}`).update({
-    //     image: data.message
-    //   })
-    // );
-    // hasImage(data.message).then(resolve =>
-    //   database.ref(`room/${data.room}/${time.full}`).set({
-    //     id: time.full,
-    //     time: time.short,
-    //     author: data.author,
-    //     message: data.message,
-    //     image: data.message
-    //   }),
-    //   error =>
-    //   database.ref(`room/${data.room}/${time.full}`).set({
-    //     id: time.full,
-    //     time: time.short,
-    //     author: data.author,
-    //     message: data.message
-    //   })
-    // );
-    // hasImage(data.message).then(resolve => console.log(resolve),
-    //   error => console.log(error)
-    // );
-    var fs = require("fs");
-      // Check if the file exists in the current directory.
-      fs.access(data.message, fs.constants.F_OK, (err) => {
-        console.log(`${data.message} ${err ? 'does not exist' : 'exists'}`);
+    database.ref(`room/${data.room}/${time.full}`).set({
+      id: time.full,
+      time: time.short,
+      author: data.author,
+      message: data.message
     });
+    if (isImageUrl(data.message)) {
+      database.ref(`room/${data.room}/${time.full}`).update({
+        image: data.message
+      })
+    }
   });
 });
 
