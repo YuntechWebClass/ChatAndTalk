@@ -1,16 +1,17 @@
 form {
     position: fixed;
     bottom: 0;
-    width: 50%;
+    left: 3%;
+    width: 100%;
     z-index: 999;
 }
 form input {
     height: 30;
-    width: 90%;
+    width: 75%;
     font-size: 20px;
 }
 #submitButton {
-    width: 9%;
+    width: 20%;
     font-size: 20px;
 }
 .time {
@@ -50,9 +51,12 @@ form input {
     border-radius: 8px 8px 8px 0;
 }
 .author{
-    width: 150px;
+    width: 100px;
     font-size: 20px;
 }
 div.col-sm-6{
     padding:0px;
+}
+td {
+    border: 1px solid rgb(177, 177, 177)
 }
