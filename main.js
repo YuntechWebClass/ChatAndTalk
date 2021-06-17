@@ -60,9 +60,7 @@ io.on("connection", function(socket) {
       id: time.full,
       time: time.short,
       author: data.author,
-      message: data.message,
-      image: null,
-      url: null
+      message: data.message
     };
     
     if (isUrl(data.message)) {
