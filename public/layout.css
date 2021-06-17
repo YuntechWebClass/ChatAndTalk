@@ -1,7 +1,7 @@
 form {
     position: fixed;
     bottom: 100px;
-    left: 1%;
+    left: 0.1%;
     width: 100%;
     z-index: 999;
 }
