@@ -41,13 +41,11 @@ form input {
 .otherMsg {
     background-color: white;
     word-wrap: break-word;
-    border-radius: 8px 8px 8px 0;
     word-break: break-all;
 }
 .myMsg {
     background-color:greenyellow;
     word-wrap: break-word;
-    border-radius: 8px 8px 8px 0;
     word-break: break-all;
 }
 .time {
