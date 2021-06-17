@@ -95,13 +95,13 @@
       Ttd.className = "time";
 
       if (data.url != null) { // is URL
-        const link = document.createElement("a")
-        link.href = data.url
-        link.target = _blank
-        link.innerText = data.message
+        const link = document.createElement("a");
+        link.href = data.url;
+        link.target = "_blank";
+        link.innerText = data.message;
         Mtd.innerHTML = link;
       } else {
-        Mtd.innerText = data.message
+        Mtd.innerText = data.message;
       }
       Atd.innerText = data.author;
       Ttd.innerText = data.time;
