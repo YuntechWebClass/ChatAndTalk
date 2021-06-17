@@ -21,8 +21,6 @@ server.listen(port, function() {
 firebase.initializeApp(firebaseConfig);
 let database = firebase.database()
 
-app.use(__dirname);
-
 app.get('/stop', function (req, res) {
   process.exit();
 });
