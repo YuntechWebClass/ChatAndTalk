@@ -37,8 +37,8 @@
             .getElementsByTagName("form")[0]
             .addEventListener("submit", function (event) {
                 event.preventDefault();
-                let roomName = ((String)(document.getElementById("RoomName").value.replace("/", "")));
-                let username = ((String)(document.getElementById("Username").value.replace("/", "")));
+                let roomName = ((String)(document.getElementById("RoomName").value.replaceAll("/", "")));
+                let username = ((String)(document.getElementById("Username").value.replaceAll("/", "")));
 
                 if (roomName=="" || username=="") {
                     alert("請填寫聊天室及使用者名稱！");
