@@ -54,6 +54,7 @@ io.on("connection", function(socket) {
 
   // send message
   socket.on("send message", (data) => {
+    console.log(data.room + ": " + data.author + ": " + data.message);
     let time = getTime();
     let upload = {
       id: time.full,
