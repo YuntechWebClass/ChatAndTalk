@@ -1,134 +1,135 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat and Talk</title>
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous"
-    ></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" />
-    <link rel="stylesheet" type="text/css" href="/css/layout.css" />
-  </head>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Chat and Talk</title>
+        <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"
+        ></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" />
+        <link rel="stylesheet" type="text/css" href="/css/layout.css" />
+    </head>
 
 
 
-  <body>
-    <h1 id="roomName">聊天室</h1>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-8 table-responsive">
-          <table class="table-nowrap">
-            <thead>
-            </thead>
-            <tbody id="Msg">
-              
-            </tbody>
-          </table>
+    <body>
+        <h1 id="roomName">聊天室名稱：</h1>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-8 table-responsive">
+                    <table class="table-nowrap">
+                        <thead>
+                        </thead>
+                        <tbody id="Msg">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-4">
+                    <h1 style="color:grey">圖片<h1>
+                    <div id="Image">
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-4">
-          <h1 style="color:grey">圖片<h1>
-          <div id="Image">
-          </div>
-        </div>
-      </div>
-    </div>
-    <form>
-      <input type="text" id="msg" placeholder="輸入訊息" style="border-color:black;border-width:3px;border-style:solid;" />
-      <input type="submit" id="submitButton" value="Send" />
-    </form>
-  </body>
+        <form>
+            <input type="text" id="msg" placeholder="輸入訊息" style="border-color:black;border-width:3px;border-style:solid;" />
+            <input type="submit" id="submitButton" value="Send" />
+        </form>
+    </body>
 
 
-  <script>
-    let params = new URL(window.location).pathname.substr(1).split("/");
-    let roomName = params[0];
-    let userName = params[1];
-    let socket = io();
-    
-    document.getElementById("roomName").innerText = roomName
+    <script>
+        let params = new URL(window.location).pathname.substr(1).split("/");
+        let roomName = decodeURI(params[0]);
+        let userName = decodeURI(params[1]);
+        let socket = io();
+        
+        // change room title
+        document.getElementById("roomName").innerText = "聊天室名稱：" + roomName;
 
-    // send event that user has joined room
-    socket.emit("join", {userName: userName, roomName: roomName});
-    
-    // focus on text box
-    document.getElementById("msg").focus();
+        // send event that user has joined room
+        socket.emit("join", {userName: userName, roomName: roomName});
+        
+        // focus on input text box
+        document.getElementById("msg").focus();
 
-    // submit
-    document
-      .getElementsByTagName("form")[0]
-      .addEventListener("submit", function (event) {
-        event.preventDefault();
-        socket.emit("send message", {
-          author: userName,
-          room: roomName,
-          message: document.getElementById("msg").value
+        // submit message
+        document
+            .getElementsByTagName("form")[0]
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+                socket.emit("send message", {
+                    author: userName,
+                    room: roomName,
+                    message: document.getElementById("msg").value
+                });
+
+                document.getElementById("msg").value = "";
+                document.getElementById("msg").focus();
+            });
+
+        // show get new message
+        socket.on("show message", (data)=>{
+            let isUrl = data.url != null;
+            const tr = document.createElement("tr");
+            const Atd = document.createElement("td");
+            const Mtd = document.createElement((isUrl)?("a"):("td"));
+            const Ttd = document.createElement("td");
+            let authorClass = "";
+            let divClass = "";
+
+            // verify that who send the message
+            if (data.author === userName) {
+                divClass = "myMsg";
+            } else {
+                divClass = "otherMsg";
+            }
+
+            tr.className = divClass;
+            Atd.className = "author";
+            Mtd.className = "message";
+            Ttd.className = "time";
+
+            if (isUrl) {
+                Mtd.href = data.url;
+                Mtd.target = "_blank";
+            }
+            Atd.innerText = data.author;
+            Mtd.innerText = data.message;
+            Ttd.innerText = data.time;
+            
+            tr.appendChild(Atd);
+            tr.appendChild(Mtd);
+            tr.appendChild(Ttd);
+
+            var first = document.getElementById("Msg").firstChild;
+            document.getElementById("Msg").insertBefore(tr,first);
+            
+            // Show image
+            if (data.image != null) {
+                const img = document.createElement("img")
+                const br = document.createElement("br")
+                img.src = data.image
+                var fimg = document.getElementById("Image").firstChild;
+                document.getElementById("Image").insertBefore(img,fimg)
+                document.getElementById("Image").insertBefore(br,fimg)
+            }
         });
 
-        document.getElementById("msg").value = "";
-        document.getElementById("msg").focus();
-      });
+        // remove message
+        socket.on("hide message", (data)=>{
+            document.getElementById(data.id).remove();
+        });
 
-    // show get new message
-    socket.on("show message", (data)=>{
-      let isUrl = data.url != null;
-      const tr = document.createElement("tr");
-      const Atd = document.createElement("td");
-      const Mtd = document.createElement((isUrl)?("a"):("td"));
-      const Ttd = document.createElement("td");
-      let authorClass = "";
-      let divClass = "";
-
-      // verify that who send the message
-      if (data.author === userName) {
-        divClass = "myMsg";
-      } else {
-        divClass = "otherMsg";
-      }
-
-      tr.className = divClass;
-      Atd.className = "author";
-      Mtd.className = "message";
-      Ttd.className = "time";
-
-      if (isUrl) {
-        Mtd.href = data.url;
-        Mtd.target = "_blank";
-      }
-      Atd.innerText = data.author;
-      Mtd.innerText = data.message;
-      Ttd.innerText = data.time;
-      
-      tr.appendChild(Atd);
-      tr.appendChild(Mtd);
-      tr.appendChild(Ttd);
-
-      var first = document.getElementById("Msg").firstChild;
-      document.getElementById("Msg").insertBefore(tr,first);
-      
-      // Show image
-      if (data.image != null) {
-        const img = document.createElement("img")
-        const br = document.createElement("br")
-        img.src = data.image
-        var fimg = document.getElementById("Image").firstChild;
-        document.getElementById("Image").insertBefore(img,fimg)
-        document.getElementById("Image").insertBefore(br,fimg)
-      }
-    });
-
-    // remove message
-    socket.on("hide message", (data)=>{
-      document.getElementById(data.id).remove();
-    });
-
-    function checkURL(url) {
-      return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
-    }
-  </script>
+        function checkURL(url) {
+            return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+        }
+    </script>
 </html>
