@@ -35,8 +35,7 @@ form input {
     font-size: 20px;    
 }
 .author{
-    /* width: 10%; */
-    word-break: keep-all;
+    width: 10%;
     font-size: 20px;
 }
 .otherMsg {
@@ -47,6 +46,7 @@ form input {
 .myMsg {
     background-color:greenyellow;
     word-wrap: break-word;
+    word-break: break-all;
 }
 .time {
     color:gray;
