@@ -13,7 +13,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" />
-    <link rel="stylesheet" type="text/css" href="layout.css" />
+    <link rel="stylesheet" type="text/css" href="/css/layout.css" />
   </head>
 
 
@@ -52,7 +52,7 @@
     let socket = io();
     
     document.getElementById("roomName").innerText = roomName
-    
+
     // send event that user has joined room
     socket.emit("join", {userName: userName, roomName: roomName});
     
