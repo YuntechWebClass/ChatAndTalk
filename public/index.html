@@ -9,10 +9,11 @@
       integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
       crossorigin="anonymous"
     ></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" />
     <link rel="stylesheet" type="text/css" href="layout.css" />
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   </head>
 
 
@@ -44,7 +45,6 @@
   </body>
 
 
-  <script src="/socket.io/socket.io.js"></script>
   <script>
     let userName = prompt("Username");
     let roomName = prompt("Room name");
@@ -75,9 +75,10 @@
 
     // show get new message
     socket.on("show message", (data)=>{
+      let isUrl = data.url != null;
       const tr = document.createElement("tr");
       const Atd = document.createElement("td");
-      const Mtd = document.createElement("td");
+      const Mtd = document.createElement((isUrl)?("td"):("a"));
       const Ttd = document.createElement("td");
       let authorClass = "";
       let divClass = "";
@@ -89,21 +90,16 @@
         divClass = "otherMsg";
       }
 
-      tr.className = divClass;
       Atd.className = "author";
       Mtd.className = "message";
       Ttd.className = "time";
 
-      if (data.url != null) { // is URL
-        const link = document.createElement("a");
-        link.href = data.url;
-        link.target = "_blank";
-        link.innerText = data.message;
-        Mtd.innerHTML = link;
-      } else {
-        Mtd.innerText = data.message;
+      if (isUrl) {
+        Mtd.href = data.url;
+        Mtd.target = "_blank";
       }
       Atd.innerText = data.author;
+      Mtd.innerText = data.message;
       Ttd.innerText = data.time;
       
       tr.appendChild(Atd);
