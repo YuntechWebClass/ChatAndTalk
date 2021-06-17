@@ -22,7 +22,6 @@ form input {
 }
 .message {
     font-size: 20px;
-    width : 800px
 }
 #messages {
     list-style-type: none;
