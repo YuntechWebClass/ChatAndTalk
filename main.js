@@ -54,7 +54,6 @@ io.on("connection", function(socket) {
 
   // send message
   socket.on("send message", (data) => {
-    console.log(data.room + ": " + data.author + ": " + data.message);
     let time = getTime();
     let upload = {
       id: time.full,
@@ -68,9 +67,17 @@ io.on("connection", function(socket) {
     }
     if (isImageUrl(data.message)) {
       upload.image = data.message;
+      upload.url = data.message;
+      database.ref(`room/${data.room}/${time.full}`).set(upload);
+   
+    } else if (isUrl(data.message)) {
+      upload.url = data.message;
+      database.ref(`room/${data.room}/${time.full}`).set(upload);
+    
+    } else {
+      database.ref(`room/${data.room}/${time.full}`).set(upload);
     }
 
-    database.ref(`room/${data.room}/${time.full}`).set(upload);
   });
 });
 
