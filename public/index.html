@@ -46,15 +46,16 @@
 
 
   <script>
-    let userName = prompt("Username");
-    let roomName = prompt("Room name");
+    let params = new URL(window.location).pathname.substr(1).split("/");
+    let roomName = params[0];
+    let userName = params[1];
     let socket = io();
     
     document.getElementById("roomName").innerText = roomName
-
+    
     // send event that user has joined room
     socket.emit("join", {userName: userName, roomName: roomName});
-
+    
     // focus on text box
     document.getElementById("msg").focus();
 
