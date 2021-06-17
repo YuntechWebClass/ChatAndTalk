@@ -113,10 +113,11 @@
       // Show image
       if (data.image != null) {
         const img = document.createElement("img")
+        const br = document.createElement("br")
         img.src = data.image
         var fimg = document.getElementById("Image").firstChild;
         document.getElementById("Image").insertBefore(img,fimg)
-
+        document.getElementById("Image").insertBefore(br,fimg)
       }
     });
 
