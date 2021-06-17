@@ -13,19 +13,26 @@ let port = process.env.PORT || 3000;
 
 
 
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+let database = firebase.database()
+
+
 server.listen(port, function() {
   console.log("Server listening on port %d", port);
 });
 
 app.use(express.static(__dirname + "/public"));
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-let database = firebase.database()
 
-app.get('/', function (req, res) {
-  res.send('Hello World!');
+// 建立 Router 物件
+var router = express.Router();
+// 首頁路由 (http://localhost:8080)
+router.get('/', function(req, res) {
+  res.send('home page!');
 });
+// 將路由套用至應用程式
+app.use('/', router);
 
 io.on("connection", function(socket) {
   console.log("Connected and ready!");
