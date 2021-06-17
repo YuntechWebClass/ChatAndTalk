@@ -35,7 +35,8 @@ form input {
     font-size: 20px;    
 }
 .author{
-    width: 10% ;
+    /* width: 10%; */
+    word-break: keep-all;
     font-size: 20px;
 }
 .otherMsg {
@@ -52,7 +53,8 @@ form input {
     font-family: "Ubuntu";
     text-align: right;
     font-size: 20px;
-    width : 10%
+    /* width : 10%; */
+    word-break: keep-all;
 }
 div.col-sm-6{
     padding:0px;
