@@ -94,8 +94,16 @@
       Mtd.className = "message";
       Ttd.className = "time";
 
+      if (data.url != null) { // is URL
+        const link = document.createElement("a")
+        link.href = data.url
+        link.target = _blank
+        link.innerText = data.message
+        Mtd.innerHTML = link;
+      } else {
+        Mtd.innerText = data.message
+      }
       Atd.innerText = data.author;
-      Mtd.innerText = data.message;
       Ttd.innerText = data.time;
       
       tr.appendChild(Atd);
@@ -111,6 +119,7 @@
         img.src = data.image
         var fimg = document.getElementById("Image").firstChild;
         document.getElementById("Image").insertBefore(img,fimg)
+
       }
     });
 
