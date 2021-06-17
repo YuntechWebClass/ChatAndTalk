@@ -106,13 +106,12 @@
       document.getElementById("Msg").insertBefore(tr,first);
       
       // Show image
-      const img = document.createElement("img")
-      img.src = data.image
-      var fimg = document.getElementById("Image").firstChild;
-      document.getElementById("Image").insertBefore(img,fimg)
-      //if (data.image != null) {
-      //  image.src = data.image;
-      //}
+      if (data.image != null) {
+        const img = document.createElement("img")
+        img.src = data.image
+        var fimg = document.getElementById("Image").firstChild;
+        document.getElementById("Image").insertBefore(img,fimg)
+      }
     });
 
     // remove message
