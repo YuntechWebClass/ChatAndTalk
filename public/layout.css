@@ -14,13 +14,6 @@ form input {
     width: 20%;
     font-size: 20px;
 }
-.time {
-    color:gray;
-    font-family: "Ubuntu";
-    text-align: right;
-    font-size: 20px;
-    width : 10%
-}
 .message {
     font-size: 20px;
     width : 100%
@@ -41,19 +34,28 @@ form input {
     text-align: left;
     font-size: 20px;    
 }
+.author{
+    width: 10% ;
+    font-size: 20px;
+}
 .otherMsg {
     background-color: white;
     word-wrap: break-word;
     border-radius: 8px 8px 8px 0;
+    word-break: break-all;
 }
 .myMsg {
     background-color:greenyellow;
     word-wrap: break-word;
     border-radius: 8px 8px 8px 0;
+    word-break: break-all;
 }
-.author{
-    width: 10% ;
+.time {
+    color:gray;
+    font-family: "Ubuntu";
+    text-align: right;
     font-size: 20px;
+    width : 10%
 }
 div.col-sm-6{
     padding:0px;
