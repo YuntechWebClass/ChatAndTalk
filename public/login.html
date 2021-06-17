@@ -13,13 +13,12 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" />
-        <link rel="stylesheet" type="text/css" href="layout.css" />
     </head>
 
 
 
     <body>
-        <h1 id="roomName">CHAT and TALK</h1>
+        <a id="roomName" style="font-size: 50px; color:turquoise; text-decoration:none;" href="https://chatandtalk.herokuapp.com/">CHAT and TALK</a>
         <form>
             聊天室名稱：
             <input type="text" id="RoomName" placeholder="聊天室名稱" style="border-color:black;border-width:3px;border-style:solid;" />
@@ -33,6 +32,18 @@
 
 
     <script>
+        let params = new URL(window.location).pathname.substr(1).split("/");
+        let roomName = decodeURI(params[0]);
+
+        if (roomName != "") {
+            document.getElementById("RoomName").value = roomName;
+            document.getElementById("RoomName").disabled = true;
+            let invite = document.createElement("p");
+            invite.innerText = "你被邀請進入聊天室：" + roomName + "\n請輸入你的使用者名稱";
+            document.body.append(document.createElement("br"));
+            document.body.append(invite);
+        }
+
         document
             .getElementsByTagName("form")[0]
             .addEventListener("submit", function (event) {

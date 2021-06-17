@@ -36,6 +36,10 @@ app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/login.html');
 });
 
+app.get('/:roomname', function (req, res) {
+    res.sendFile(__dirname + '/public/login.html');
+});
+
 app.get('/:roomname/:username', function (req, res) {
     res.sendFile(__dirname + '/public/index.html');
 });
