@@ -46,7 +46,6 @@ form input {
 .myMsg {
     background-color:greenyellow;
     word-wrap: break-word;
-    word-break: break-all;
 }
 .time {
     color:gray;
