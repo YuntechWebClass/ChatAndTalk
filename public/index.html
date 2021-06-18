@@ -48,7 +48,7 @@
     <script>
         let params = new URL(window.location).pathname.substr(1).split("/");
         let roomName = decodeURI(params[0]);
-        let userName = decodeURI(params[1]);
+        let username = decodeURI(params[1]);
         let socket = io();
 
         if (roomName=="" || username=="") {
@@ -68,7 +68,7 @@
         document.getElementById("roomName").innerText = "聊天室名稱：" + roomName;
 
         // send event that user has joined room
-        socket.emit("join", {userName: userName, roomName: roomName});
+        socket.emit("join", {username: username, roomName: roomName});
         
         // focus on input text box
         document.getElementById("msg").focus();
@@ -79,7 +79,7 @@
             .addEventListener("submit", function (event) {
                 event.preventDefault();
                 socket.emit("send message", {
-                    author: userName,
+                    author: username,
                     room: roomName,
                     message: document.getElementById("msg").value
                 });
@@ -99,7 +99,7 @@
             let divClass = "";
 
             // verify that who send the message
-            if (data.author === userName) {
+            if (data.author === username) {
                 divClass = "myMsg";
             } else {
                 divClass = "otherMsg";
