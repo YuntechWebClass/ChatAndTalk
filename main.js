@@ -28,10 +28,6 @@ server.listen(port, function() {
 // URL route
 app.use(express.static(__dirname));
 
-app.get('/stop', function (req, res) {
-    process.exit();
-});
-
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/public/login.html');
 });
